@@ -1,0 +1,45 @@
+Taken from https://bitsofco.de/linting-html-using-css/
+
+*[style] { 
+  border: 5px solid red; /* Стиль для выделения элементов, в которых используются встроенные (инлайновые) стили */
+}
+
+a:not([href])  
+a[href="#"],  
+a[href=""],  
+a[href*="javascript:void(0)"] { … }  /* ссылки, которые либо не содержат атрибута href, либо он не несет смысла */
+
+
+img:not([alt]) { ... } /* пустой атрибут alt  */
+
+
+html:not([lang]),
+html[lang=""] { ... } /* Отсутствие языка документа */
+
+meta[charset]:not([charset="UTF-8"]) { ... } /* Неправильная кодировка */
+
+meta[charset="UTF-8"]:not(:first-child) { ... } /* Тег с кодировкой сразу после <head> */
+
+meta[name="viewport"][content*="user-scalable=no"],
+meta[name="viewport"][content*="maximum-scale"],
+meta[name="viewport"][content*="minimum-scale"] { ... } /* Недопустимые атрибуты Viewport: выражения user-scalable=no , 
+maximum-scale или minimum-scale никогда не должны использоваться */
+
+input:not([id]),  
+select:not([id]),  
+textarea:not([id]) { ... } /* Немаркированные элементы формы нет id*/
+
+label:not([for]) { ... } /* Немаркированные элементы формы не привязан*/
+
+input:not([name]),
+select:not([name]),
+textarea:not([name]) { ... } /* Немаркированные элементы формы нет name*/
+
+`form:not([name]):not([id]) { ...` } /* Немаркированные элементы формы отсутствуют оба атрибута — name и id*/
+
+button:empty,
+a:empty { ... } /* выделяет любые ссылки и кнопки без содержимого */
+
+script[type="text/javascript"],
+link[rel="stylesheet"][type="text/css"] { ... } /* Необязательные или устаревшие атрибуты */
+
